@@ -1,2 +1,2 @@
-# devops-GO-APP
+# DevOps-GO-APP
 DevOps Go APP
