@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABCofDevOps - Mastering the Art of DevOps</title>
+    <meta name="description" content="DevOps expert specializing in cloud-native architecture, AI-powered operations, and infrastructure automation">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', monospace;
+            background: linear-gradient(135deg, #0D1117 0%, #161B22 50%, #21262D 100%);
+            color: #C9D1D9;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated code background */
+        .code-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            overflow: hidden;
+        }
+
+        .code-line {
+            position: absolute;
+            white-space: nowrap;
+            color: #58A6FF;
+            animation: codeFlow 15s linear infinite;
+        }
+
+        @keyframes codeFlow {
+            0% { transform: translateY(-100vh) translateX(-50px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(13, 17, 23, 0.9);
+            border-bottom: 1px solid #30363D;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #58A6FF;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '🚀';
+            font-size: 1.2em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #C9D1D9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #58A6FF;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #58A6FF;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            color: #58A6FF;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #58A6FF, #79C0FF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-taglines {
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #58A6FF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            border-radius: 25px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(88, 166, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(88, 166, 255, 0); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: #8B949E;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #238636;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid #58A6FF;
+            color: #58A6FF;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(88, 166, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #2EA043;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(88, 166, 255, 0.2);
+        }
+
+        /* Tech Stack Section */
+        .tech-stack {
+            padding: 6rem 5% 4rem;
+            background: linear-gradient(135deg, rgba(22, 27, 34, 0.8) 0%, rgba(13, 17, 23, 0.9) 100%);
+            position: relative;
+        }
+
+        .tech-stack::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(88, 166, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(121, 192, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #58A6FF;
+        }
+
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 1024px) {
+            .tech-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tech-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tech-category {
+            background: linear-gradient(145deg, rgba(33, 38, 45, 0.95) 0%, rgba(22, 27, 34, 0.95) 100%);
+            border: 2px solid rgba(48, 54, 61, 0.6);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transform-origin: center;
+        }
+
+        .tech-category::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #58A6FF, #79C0FF, #238636, #58A6FF);
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .tech-category:hover::before {
+            opacity: 0.3;
+        }
+
+        .tech-category:hover {
+            transform: translateY(-12px) scale(1.08);
+            box-shadow: 0 25px 50px rgba(88, 166, 255, 0.2);
+            background: linear-gradient(145deg, rgba(33, 38, 45, 0.98) 0%, rgba(22, 27, 34, 0.98) 100%);
+            border-color: rgba(88, 166, 255, 0.6);
+        }
+
+        /* Ensure all child elements inherit the hover state */
+        .tech-category:hover h3 {
+            color: #79C0FF;
+        }
+
+        .tech-category:hover p {
+            color: #8B949E;
+        }
+
+        .tech-category h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: #79C0FF;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tech-category p {
+            color: #8B949E;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tech-badge {
+            background: rgba(88, 166, 255, 0.15);
+            border: 1px solid rgba(88, 166, 255, 0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #79C0FF;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tech-badge:hover::before {
+            left: 100%;
+        }
+
+        .tech-badge:hover {
+            background: rgba(88, 166, 255, 0.3);
+            transform: translateY(-2px);
+            border-color: #58A6FF;
+            box-shadow: 0 5px 15px rgba(88, 166, 255, 0.2);
+            color: #E6EDF3;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 5%;
+            background: rgba(13, 17, 23, 0.95);
+            position: relative;
+        }
+
+        .projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(88, 166, 255, 0.02) 50%, transparent 70%),
+                radial-gradient(circle at 80% 20%, rgba(35, 134, 54, 0.03) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(33, 38, 45, 0.95) 0%, rgba(22, 27, 34, 0.95) 100%);
+            border: 1px solid rgba(48, 54, 61, 0.8);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #58A6FF, #79C0FF, #238636);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(88, 166, 255, 0.03), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .project-card:hover::after {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(88, 166, 255, 0.5);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(88, 166, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            font-size: 2.2rem;
+            padding: 1rem;
+            background: rgba(88, 166, 255, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            background: rgba(88, 166, 255, 0.2);
+            transform: scale(1.05);
+            border-color: #58A6FF;
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            color: #C9D1D9;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .project-description {
+            color: #8B949E;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1.5rem 0;
+        }
+
+        /* FIXED: Improved project tech badges for better readability */
+        .project-card .tech-badge {
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            color: #79C0FF;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-card .tech-badge:hover {
+            background: rgba(88, 166, 255, 0.2);
+            border-color: #58A6FF;
+            color: #C9D1D9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #58A6FF;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(88, 166, 255, 0.05);
+        }
+
+        .project-link:hover {
+            color: #79C0FF;
+            background: rgba(88, 166, 255, 0.15);
+            border-color: #58A6FF;
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 5%;
+            background: rgba(22, 27, 34, 0.5);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stat-item {
+            padding: 2rem 1rem;
+            background: rgba(33, 38, 45, 0.8);
+            border: 1px solid #30363D;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: #58A6FF;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #58A6FF;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #8B949E;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 5% 4rem;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: rgba(33, 38, 45, 0.8);
+            border: 1px solid #30363D;
+            border-radius: 8px;
+            color: #C9D1D9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(88, 166, 255, 0.1);
+            border-color: #58A6FF;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #0D1117;
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid #30363D;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            color: #8B949E;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+                min-height: 90vh;
+            }
+            
+            .tech-stack, .projects, .contact {
+                padding: 4rem 1rem 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0D1117;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #58A6FF;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #79C0FF;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated code background -->
+    <div class="code-rain" id="codeRain"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">ABCofDevOps</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tech">Tech Stack</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>💻</span>
+                DevOps Engineer & Cloud Architect
+            </div>
+            <h1>ABCofDevOps</h1>
+            <div class="hero-taglines">
+                <p class="tagline">ALL Basic Concepts of DevOPS | ABC of DEVOPS | ABCD | DEVOPS 101</p>
+            </div>
+            <p class="hero-subtitle">Mastering the Art of DevOps, One Repository at a Time</p>
+            <p>Passionate about DevOps, automation, infrastructure, and cloud-native technologies. Specializing in AI-powered operations, container orchestration, and building scalable, resilient systems that transform how we deploy software.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/abcofdevops" class="btn btn-primary">
+                    <span>📂</span> View GitHub
+                </a>
+                <a href="#projects" class="btn btn-secondary">
+                    <span>🚀</span> Explore Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack" id="tech">
+        <div class="container">
+            <h2 class="section-title">🛠️ Technology Stack</h2>
+            
+            <div class="tech-categories">
+                <div class="tech-category">
+                    <h3>☁️ Cloud & Infrastructure</h3>
+                    <p>Building scalable, resilient systems on modern cloud platforms</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Kubernetes</span>
+                        <span class="tech-badge">Helm</span>
+                        <span class="tech-badge">Terraform</span>
+                        <span class="tech-badge">Ansible</span>
+                        <span class="tech-badge">Vagrant</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3>🔧 DevOps & Automation</h3>
+                    <p>Streamlining development workflows with intelligent automation</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">GitHub Actions</span>
+                        <span class="tech-badge">Shell Script</span>
+                        <span class="tech-badge">Git</span>
+                        <span class="tech-badge">CI/CD</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3>💻 Programming & Scripting</h3>
+                    <p>Multi-language proficiency for diverse automation needs</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">YAML</span>
+                        <span class="tech-badge">Bash</span>
+                        <span class="tech-badge">JSON</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3>🤖 AI & Innovation</h3>
+                    <p>Leveraging artificial intelligence to enhance operational efficiency</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">OpenAI</span>
+                        <span class="tech-badge">Ollama</span>
+                        <span class="tech-badge">TensorFlow</span>
+                        <span class="tech-badge">kubectl-ai</span>
+                        <span class="tech-badge">MLOps</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3>📊 Project Management</h3>
+                    <p>Agile methodologies and collaborative development practices</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Jira</span>
+                        <span class="tech-badge">Confluence</span>
+                        <span class="tech-badge">Scrum</span>
+                        <span class="tech-badge">GitHub</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3>🔐 Security & Compliance</h3>
+                    <p>Integrating security best practices into DevOps workflows</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">DevSecOps</span>
+                        <span class="tech-badge">Policy as Code</span>
+                        <span class="tech-badge">Security Scanning</span>
+                        <span class="tech-badge">Compliance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">🌟 Featured Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">🔧</span>
+                        <div class="project-info">
+                            <h3>Helm Charts Repository</h3>
+                            <p class="project-description">Production-ready Helm charts for Kubernetes service deployment with complete CI/CD pipeline integration and GitHub Pages hosting.</p>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Kubernetes</span>
+                        <span class="tech-badge">Helm</span>
+                        <span class="tech-badge">YAML</span>
+                        <span class="tech-badge">GitHub Pages</span>
+                    </div>
+                    <a href="https://github.com/abcofdevops/helm" class="project-link">
+                        <span>🔗</span> View Repository
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">🤖</span>
+                        <div class="project-info">
+                            <h3>AI-Assisted DevOps</h3>
+                            <p class="project-description">Next-generation operations with AI-powered log analysis, intelligent automation agents, and kubectl-ai for intelligent cluster management.</p>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">AI/ML</span>
+                        <span class="tech-badge">Ollama</span>
+                        <span class="tech-badge">Kubernetes</span>
+                    </div>
+                    <a href="https://github.com/abcofdevops/aiops" class="project-link">
+                        <span>🔗</span> View Repository
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">🐧</span>
+                        <div class="project-info">
+                            <h3>Shell Scripting Arsenal</h3>
+                            <p class="project-description">Production-ready automation scripts for system administration, monitoring, and maintenance with cross-platform compatibility.</p>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Bash</span>
+                        <span class="tech-badge">Shell</span>
+                        <span class="tech-badge">Linux</span>
+                        <span class="tech-badge">Automation</span>
+                    </div>
+                    <a href="https://github.com/abcofdevops/shell-scripting" class="project-link">
+                        <span>🔗</span> View Repository
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">⚸️</span>
+                        <div class="project-info">
+                            <h3>Kubernetes Mastery</h3>
+                            <p class="project-description">Comprehensive Kubernetes manifests, deployment strategies, and production-ready configurations with learning resources.</p>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Kubernetes</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">YAML</span>
+                        <span class="tech-badge">DevOps</span>
+                    </div>
+                    <a href="https://github.com/abcofdevops/kubernetes" class="project-link">
+                        <span>🔗</span> View Repository
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">🏗️</span>
+                        <div class="project-info">
+                            <h3>Infrastructure as Code</h3>
+                            <p class="project-description">Multi-cloud Terraform modules with scalable infrastructure patterns, security best practices, and automated provisioning workflows.</p>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Terraform</span>
+                        <span class="tech-badge">Cloud</span>
+                        <span class="tech-badge">IaC</span>
+                        <span class="tech-badge">Automation</span>
+                    </div>
+                    <a href="https://github.com/abcofdevops/terraform" class="project-link">
+                        <span>🔗</span> View Repository
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">⚙️</span>
+                        <div class="project-info">
+                            <h3>Configuration Management</h3>
+                            <p class="project-description">Ansible playbooks and roles for automated system configuration, server provisioning, and multi-environment management.</p>
+                        </div>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Ansible</span>
+                        <span class="tech-badge">YAML</span>
+                        <span class="tech-badge">Linux</span>
+                        <span class="tech-badge">Automation</span>
+                    </div>
+                    <a href="https://github.com/abcofdevops/ansible" class="project-link">
+                        <span>🔗</span> View Repository
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">📈 GitHub Analytics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Commits</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">🤝 Let's Connect & Collaborate</h2>
+                <p>Always interested in discussing DevOps innovations, sharing knowledge, and working on impactful projects. Open to collaboration opportunities in cloud-native technologies, AI/ML operations, and platform engineering.</p>
+                
+                <div class="contact-links">
+                    <a href="https://github.com/abcofdevops" class="contact-link">
+                        <span>📂</span> GitHub Profile
+                    </a>
+                    <a href="mailto:abcofdevops@gmail.com" class="contact-link">
+                        <span>📧</span> Email Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>🚀 <strong>"Automating the Present, Architecting the Future"</strong></p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Made with ❤️ by ABCofDevOps | DevOps Journey Continues</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated code rain background
+        function createCodeRain() {
+            const codeRain = document.getElementById('codeRain');
+            const codeSnippets = [
+                'kubectl apply -f deployment.yaml',
+                'terraform init && terraform plan',
+                'docker build -t myapp:latest .',
+                'ansible-playbook site.yml',
+                'helm upgrade --install myapp ./chart',
+                'git commit -m "feat: add new feature"',
+                'pipeline { agent any stages {',
+                'apiVersion: apps/v1 kind: Deployment',
+                'resource "aws_instance" "example" {',
+                'tasks: - name: Install package',
+                '#!/bin/bash set -e',
+                'FROM node:16-alpine WORKDIR /app',
+                'kind: Service metadata: name: web',
+                'variable "instance_type" { default = "t3.micro" }',
+                'import boto3 client = boto3.client("ec2")',
+                '- hosts: all become: yes tasks:',
+            ];
+
+            for (let i = 0; i < 15; i++) {
+                const codeLine = document.createElement('div');
+                codeLine.className = 'code-line';
+                codeLine.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+                codeLine.style.left = Math.random() * 100 + 'vw';
+                codeLine.style.animationDelay = Math.random() * 15 + 's';
+                codeLine.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                codeRain.appendChild(codeLine);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(13, 17, 23, 0.95)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+            } else {
+                header.style.background = 'rgba(13, 17, 23, 0.9)';
+                header.style.backdropFilter = 'blur(20px)';
+            }
+        });
+
+        // Initialize code rain animation
+        createCodeRain();
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.tech-category, .project-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Add click ripple effect to buttons
+        document.querySelectorAll('.btn, .project-link, .contact-link').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(88, 166, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Dynamic typing effect for hero subtitle
+        function typeWriter(element, text, speed = 50) {
+            element.textContent = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', () => {
+            const subtitle = document.querySelector('.hero-subtitle');
+            const originalText = subtitle.textContent;
+            setTimeout(() => {
+                typeWriter(subtitle, originalText, 80);
+            }, 1000);
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Tech badge hover sound effect (visual feedback)
+        document.querySelectorAll('.tech-badge').forEach(badge => {
+            badge.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            badge.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Project card tilt effect
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                this.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // Smooth reveal animation for stats
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                const increment = target / 50;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + (stat.textContent.includes('+') ? '+' : '');
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '');
+                    }
+                }, 50);
+            });
+        }
+
+        // Trigger stats animation when in view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
+                
