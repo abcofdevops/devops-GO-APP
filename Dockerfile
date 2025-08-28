@@ -1,8 +1,8 @@
 FROM golang:1.24 AS base
 WORKDIR /app
-COPY go.mod .
+COPY go-app/go.mod .
 RUN go mod download
-COPY . .
+COPY go-app/ .
 RUN go build -o go-app .
 
 FROM gcr.io/distroless/base:latest
