@@ -18,5 +18,7 @@ spec:
       containers:
       - name: go-app
         image: go-app:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
+
