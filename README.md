@@ -14,6 +14,8 @@ http://localhost:8080
 go build
  ./go-app 
 
+cd ../
+
 ## Docker
 docker build -t go-app:latest .
 docker run -p 8080:8080 go-app:latest
@@ -46,7 +48,7 @@ kubectl get svc
 docker exec -it kind-control-plane curl http://10.96.130.232
 
 ## Ingress controller
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/kind/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 kubectl get pods -n ingress-nginx
 
 kind delete cluster
@@ -54,3 +56,26 @@ kind create cluster --config kind-config.yaml
 
 kubectl rollout restart deployment go-app
 kubectl wait --for=condition=Ready pod -l app=go-app
+
+
+## HELM
+mkdir helm && cd $_
+helm create go-app-chart
+cd go-app-chart
+
+rm -r Charts
+rm -r templates/*
+
+cp ../../k8s/manifests/* templates/
+
+### Values
+add values in values.yaml
+
+helm install go-app ./go-app-chart
+helm list
+
+helm uninstall go-app
+helm upgrade go-app ./go-app-chart
+
+
+
