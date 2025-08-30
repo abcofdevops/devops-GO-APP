@@ -9,5 +9,4 @@ FROM gcr.io/distroless/base:latest
 COPY --from=base /app/go-app .
 COPY --from=base /app/static ./static
 EXPOSE 8080
-RUN go test
 CMD [ "./go-app" ]
