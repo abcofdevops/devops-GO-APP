@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
@@ -11,14 +12,15 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func test(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hello from Go Test!")
+	fmt.Fprintf(w, "Hello from Go Test!")
 }
 
 func main() {
-    http.HandleFunc("/", home)
-    http.HandleFunc("/test", test)
-    fmt.Println("Server running on port 8080")
+	http.HandleFunc("/", home)
+	http.HandleFunc("/test", test)
+	fmt.Println("Server running on port 8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatal("Server failed to start:", err)
+		fmt.Printf("Server failed to start: %v\n", err)
+		os.Exit(1)
 	}
 }
