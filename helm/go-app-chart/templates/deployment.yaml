@@ -17,8 +17,7 @@ spec:
     spec:
       containers:
       - name: go-app
-        image: go-app:{{ .Values.image.tag }}
+        image: abcofdevops/go-app:{{ .Values.image.tag }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
-
