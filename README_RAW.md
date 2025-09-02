@@ -1,6 +1,4 @@
-# DevOps-GO-APP
-DevOps Go APP
-
+# DevOps Go-APP
 ## GO-APP
 mkdir go-app && cd $_
 go mod init go-app
@@ -87,7 +85,7 @@ https://github.com/marketplace/actions/checkout
 
 ## CD
 
-### Argo CD
+### Argo CD Installation
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
@@ -95,6 +93,8 @@ kubectl port-forward svc/argocd-server -n argocd 8000:443
 
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
+
+### Argo CD run
 kubectl apply -f go-app.yaml -n argocd
 
 
